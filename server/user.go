@@ -18,11 +18,12 @@ type User struct {
 var users = []User{}
 
 // add all user routes here
-func UserRoutes(app *fiber.App) {
-	app.Post("/api/user", createUser)
-	app.Patch("/api/user/:id/paid", updateUserPaidStatus)
-	app.Get("/api/user", getUsers)
+func UserRoutes(router fiber.Router) {
+    router.Post("/user", createUser)
+    router.Patch("/user/:id/paid", updateUserPaidStatus)
+    router.Get("/user", getUsers)
 }
+
 
 func createUser(c *fiber.Ctx) error {
 	user := &User{}

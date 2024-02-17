@@ -14,9 +14,12 @@ func main() {
 	// Middleware (Logger)
 	app.Use(logger.New())
 
-	// By doing this im simplifying the main.go file
+	// creating a route group for /api
+	api := app.Group("/api")
+
+	// By doing this we can add more routes to the /api group
 	// ex: ProductRoutes(app)
-	UserRoutes(app)
+	UserRoutes(api) // add user routes to /api/user
 
 	app.Get("/health-check", func(c *fiber.Ctx) error {
 		return c.SendString("Server running!")
