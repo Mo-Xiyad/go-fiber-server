@@ -19,13 +19,13 @@ func main() {
 	// creating a route group for /api
 	api := app.Group("/api")
 
-	// By doing this we can add more routes to the /api group
-	// ex: ProductRoutes(app)
-	UserRoutes(api) // add user routes to /api/user
-
 	app.Get("/health-check", func(c *fiber.Ctx) error {
 		return c.SendString("Server running!")
 	})
+
+	// By doing this we can add more routes to the /api group
+	// ex: ProductRoutes(app)
+	UserRoutes(api) // add user routes to /api/user
 
 	log.Fatal(app.Listen(":8080"))
 }
